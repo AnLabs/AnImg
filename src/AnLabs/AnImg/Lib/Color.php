@@ -39,7 +39,7 @@ final class Color
         self::GREEN => [0, 150, 0],
         self::ORANGE => [220, 140, 33],
         self::YELLOW => [255, 200, 33],
-        self::PURPLE => [80, 0, 180],
+        self::PURPLE => [110, 33, 220],
         self::RED => [200, 0, 0],
     ];
     
