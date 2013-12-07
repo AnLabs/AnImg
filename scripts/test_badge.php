@@ -9,5 +9,5 @@ $image = $badgeCreator->createGitHubBadge("feature", "incomplete", Color::orange
 $image->saveImageToFile('img.png', 'png');
 
 $imageTransform = new \AnLabs\AnImg\ImageTransformer;
-$downsampledImage = $imageTransform->resizeTransformAR($image, 19, false);
+$downsampledImage = $imageTransform->resizeTransformAR($image, 22, false);
 $downsampledImage->saveImageToFile('img2.png', 'png');
