@@ -20,6 +20,9 @@ abstract class Image
     final protected function setImage($image)
     {
         $this->image = $image;
+        $this->setWidth(imagesx($image));
+        $this->setHeight(imagesy($image));
+        imagealphablending($image, true);
         return $this;
     }
 
@@ -93,7 +96,7 @@ abstract class Image
     
     public function __construct($el1 = null, $el2 = null)
     {
-        if ($el1 instanceof Image) {
+        if (is_resource($el1)) {
             $this->setImage($el1);
         } else if (is_int($el1) && is_int($el2)) {
             $this->setImage(static::createEmptyWithDimensions($el1, $el2));
