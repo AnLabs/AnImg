@@ -21,7 +21,7 @@ final class Badge
         $roundRadius = 2 * $marginFactor;
         $margin = [
             "top"    => 4 * $marginFactor,
-            "bottom" => 4 * $marginFactor,
+            "bottom" => 4 * $marginFactor * 1.5,
             "left"   => 4 * $marginFactor,
             "right"  => 4 * $marginFactor,
         ];
