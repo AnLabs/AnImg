@@ -34,7 +34,7 @@ final class Badge
             "right" => $font->width($rightText),
             "total" => $font->width($text),
         ];
-        $badgeWidth = 4 * $margin["left"] + 5 * $margin["right"] + $width["total"];
+        $badgeWidth = 4 * $margin["left"] + 4 * $margin["right"] + $width["total"];
         $badgeHeight = $margin["top"] + $margin["bottom"] + $font->height($text);
 
         $badgeImage = new Lib\TCGDImage($badgeWidth, $badgeHeight);
