@@ -35,6 +35,7 @@ final class ImageTransformer
 
         // Creating the new image
         $dst_img = new Lib\TCGDImage($new_x, $new_y);
+        $dst_img->fillColor(255, 255, 255, 0);
         imagecopyresampled($dst_img->image(),$img->image(),0,0,0,0,$new_x,$new_y,$old_x,$old_y);
 
         return $dst_img;
