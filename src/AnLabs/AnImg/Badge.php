@@ -9,8 +9,6 @@ namespace AnLabs\AnImg;
  */
 final class Badge
 {
-    const BADGE_HEIGHT = 19;
-
     const FONT_PATH_WINDOWS = "C:\\Windows\\Fonts\\";
 
     public function createGitHubBadge($leftText, $rightText, Lib\Color $color = null)
@@ -20,7 +18,7 @@ final class Badge
         }
 
         $margin = [
-            "top"    => 5,
+            "top"    => 4,
             "bottom" => 4,
             "left"   => 4,
             "right"  => 4,
@@ -38,14 +36,11 @@ final class Badge
         $badgeHeight = $margin["top"] + $margin["bottom"] + $font->height($text);
 
         $badgeImage = new Lib\TCGDImage($badgeWidth, $badgeHeight);
-        $badgeImage->fillColor(100, 100, 100, 255);
+        $badgeImage->fillColor(255, 255, 255, 0);
 
         $leftSideWidth = $margin["left"] * 4 + $width["left"];
-        $grey_color = $badgeImage->allocateColorForObject(Lib\Color::grey());
-        imagefilledrectangle($badgeImage->image(), 0, 0, $leftSideWidth, $badgeHeight, $grey_color->color());
-
-        $rgb_color = $badgeImage->allocateColorForObject($color);
-        imagefilledrectangle($badgeImage->image(), $leftSideWidth, 0, $badgeWidth, $badgeHeight, $rgb_color->color());
+        $badgeImage->roundedRectangle(0, 0, $leftSideWidth + 5, $badgeHeight - 1, Lib\Color::grey());
+        $badgeImage->roundedRectangle($leftSideWidth, 0, $badgeWidth - 1, $badgeHeight - 1, $color);
 
         $text_color = $badgeImage->allocateColor(255, 255, 255);
         
