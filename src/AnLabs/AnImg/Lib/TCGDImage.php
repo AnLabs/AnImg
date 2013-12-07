@@ -20,10 +20,27 @@ final class TCGDImage extends Image
         return $this->allocateColor($rgb[0], $rgb[1], $rgb[2]);
     }
 
-    public function fillColor($red, $green, $blue, $alpha = 255)
+    public function fillColor($red, $green, $blue, $alpha = 0)
     {
         $color = imagecolorallocatealpha($this->image(), $red, $green, $blue, $alpha);
+        imagecolortransparent($this->image(), $color);
         imagefilledrectangle($this->image(), 0, 0, $this->width(), $this->height(), $color);
+    }
+
+    public function roundedRectangle($x1, $y1, $x2, $y2, Color $color, $r = 2)
+    {
+        $image = $this->image();
+
+        $allocColor = $this->allocateColorForObject($color)->color();
+
+        imagefilledrectangle($image, $x1 + $r, $y1, $x2 - $r, $y2, $allocColor);
+        imagefilledrectangle($image, $x1, $y1 + $r, $x2, $y2 - $r, $allocColor);
+
+        imagefilledellipse($image, $x1 + $r, $y1 + $r, 2*$r, 2*$r, $allocColor);
+        imagefilledellipse($image, $x1 + $r, $y2 - $r, 2*$r, 2*$r, $allocColor);
+
+        imagefilledellipse($image, $x2 - $r, $y2 - $r, 2*$r, 2*$r, $allocColor);
+        imagefilledellipse($image, $x2 - $r, $y1 + $r, 2*$r, 2*$r, $allocColor);
     }
 
     public function destroy()
@@ -40,9 +57,6 @@ final class TCGDImage extends Image
             throw new \Exception("Unsupported or corrupt image data!");
         }
         imagealphablending($image, true);
-        $this->setWidth(imagesx($image));
-        $this->setHeight(imagesy($image));
-        
         return $image;
     }
 
