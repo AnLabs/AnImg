@@ -53,6 +53,7 @@ foreach ($argv as $path) {
     foreach ($badges as $badge) {
         $image = $badgeCreator->createGitHubBadge($badge["left"], $badge["right"], getColor($badge["color"]));
         $image->saveImageToFile($badge["output"], 'png');
+        $image->destroy();
         echo "Created '{$badge['left']}' - '{$badge['right']}' ('{$badge['output']}')" . PHP_EOL;
     }
 }
