@@ -47,7 +47,7 @@ function getColor($string)
 }
 
 foreach ($argv as $path) {
-    $yml = \Symfony\Components\Yaml::parse($path);
+    $yml = Symfony\Component\Yaml\Yaml::parse($path);
     $badges = $yml["badges"];
 
     foreach ($badges as $badge) {
