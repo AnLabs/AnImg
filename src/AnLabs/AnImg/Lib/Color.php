@@ -34,10 +34,10 @@ final class Color
 
     private static $colorRgbs = [
         self::GREY => [33, 33, 33],
-        self::BLUE => [0, 0, 150],
+        self::BLUE => [0, 50, 255],
         self::TURQUOISE => [0, 150, 255],
         self::GREEN => [0, 150, 0],
-        self::ORANGE => [230, 150, 33],
+        self::ORANGE => [220, 140, 33],
         self::YELLOW => [255, 200, 33],
         self::PURPLE => [80, 0, 180],
         self::RED => [200, 0, 0],
