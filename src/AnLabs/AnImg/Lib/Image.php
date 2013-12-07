@@ -105,5 +105,8 @@ abstract class Image
         }
     }
 
-    abstract protected static function createEmptyWithDimensions($width, $height);
+    protected static function createEmptyWithDimensions($width, $height)
+    {
+        throw new \Exception("Not implemented yet!");
+    }
 }
