@@ -20,6 +20,17 @@ final class TCGDImage extends Image
         return $this->allocateColor($rgb[0], $rgb[1], $rgb[2]);
     }
 
+    public function colorAt($x, $y)
+    {
+        // TODO: Return ImageColor obj
+        return imagecolorat($this->image(), $x, $y);
+    }
+
+    public function setPixel($x, $y, ImageColor $color)
+    {
+        imagesetpixel($this->image(), $x, $y, $color->color());
+    }
+
     public function fillColor($red, $green, $blue, $alpha = 0)
     {
         $color = imagecolorallocatealpha($this->image(), $red, $green, $blue, $alpha);
