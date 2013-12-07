@@ -111,7 +111,7 @@ final class ImageTransformer
             for ($x = 0; $x < $width-1; $x++) { // each row
                 for ($y = 0; $y < $height; $y++) { // each pixel
 
-                    $rgbOrig = $img->colorAt($x, $y);
+                    $rgbOrig = $img->colorAtRaw($x, $y);
                     $rOrig = (($rgbOrig >> 16) & 0xFF);
                     $gOrig = (($rgbOrig >> 8) & 0xFF);
                     $bOrig = ($rgbOrig & 0xFF);
@@ -145,7 +145,7 @@ final class ImageTransformer
         } else {
             for ($x = 0; $x < $width; $x++) { // each row
                 for ($y = 0; $y < $height; $y++) { // each pixel
-                    $rgbOrig = $img->colorAt($x, $y);
+                    $rgbOrig = $img->colorAtRaw($x, $y);
                     $rOrig = (($rgbOrig >> 16) & 0xFF);
                     $gOrig = (($rgbOrig >> 8) & 0xFF);
                     $bOrig = ($rgbOrig & 0xFF);

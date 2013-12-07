@@ -22,7 +22,17 @@ final class TCGDImage extends Image
 
     public function colorAt($x, $y)
     {
-        // TODO: Return ImageColor obj
+        $rgb = $this->colorAtRaw($x, $y);
+
+        $r = (($rgb >> 16) & 0xFF);
+        $g = (($rgb >> 8) & 0xFF);
+        $b = ($rgb & 0xFF);
+
+        return new ImageColor($this, $r, $g, $b);
+    }
+
+    public function colorAtRaw($x, $y)
+    {
         return imagecolorat($this->image(), $x, $y);
     }
 
