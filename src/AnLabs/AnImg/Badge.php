@@ -18,7 +18,7 @@ final class Badge
         }
 
         $marginFactor = $fontSize / 10;
-        $roundRadius = 2 * $marginFactor;
+        $roundRadius = 3 * $marginFactor;
         $margin = [
             "top"    => 4 * $marginFactor,
             "bottom" => 4 * $marginFactor * 1.5,
@@ -37,12 +37,16 @@ final class Badge
         $badgeWidth = (int)(4 * $margin["left"] + 4 * $margin["right"] + $width["total"]);
         $badgeHeight = (int)($margin["top"] + $margin["bottom"] + $font->height($text));
 
-        $badgeImage = new Lib\TCGDImage($badgeWidth, $badgeHeight);
-        $badgeImage->fillColor(255, 255, 255, 0);
+        $scaleFactor = 4;
+        $imgT = new ImageTransformer;
+        $backgroundImage = new Lib\TCGDImage($scaleFactor * $badgeWidth, $scaleFactor * $badgeHeight);
+        $backgroundImage->fillColor(255, 255, 255, 0);
 
         $leftSideWidth = $margin["left"] * 4 + $width["left"];
-        $badgeImage->roundedRectangle(0, 0, $leftSideWidth + 5, $badgeHeight - 1, Lib\Color::grey(), $roundRadius);
-        $badgeImage->roundedRectangle($leftSideWidth, 0, $badgeWidth - 1, $badgeHeight - 1, $color, $roundRadius);
+        $backgroundImage->roundedRectangle(0, 0, ($leftSideWidth + 5 * $marginFactor) * $scaleFactor, ($badgeHeight - 1) * $scaleFactor, Lib\Color::grey(), $roundRadius * $scaleFactor);
+        $backgroundImage->roundedRectangle($leftSideWidth * $scaleFactor, 0, ($badgeWidth - 1) * $scaleFactor, ($badgeHeight - 1) * $scaleFactor, $color, $roundRadius * $scaleFactor);
+        $badgeImage = $imgT->resizeTransformAR($backgroundImage, $badgeWidth);
+        $backgroundImage->destroy();
 
         $text_color = $badgeImage->allocateColor(255, 255, 255);
         
