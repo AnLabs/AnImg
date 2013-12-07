@@ -46,7 +46,7 @@ final class Badge
 
         $text_color = $badgeImage->allocateColor(255, 255, 255);
         
-        $textY = $margin["top"] + $font->height($text) - 2;
+        $textY = $margin["top"] + $font->height($text);
         $this->createShadowText($badgeImage, $leftText, 2 * $margin["left"], $textY, $text_color, $font, $marginFactor / 2);
 
         $leftDistance = $margin["left"] * 3 + $margin["right"] * 3 + $width["left"];
