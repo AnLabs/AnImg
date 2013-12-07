@@ -12,6 +12,9 @@
             "AnLabs":	"src/"
         }
     },
+    "bin": [
+        "scripts/create_badges.php"
+    ],
     "require": {
         "symfony/yaml": "*"
     }

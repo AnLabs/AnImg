@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 use AnLabs\AnImg\Badge;
 use AnLabs\AnImg\Lib\Color;
