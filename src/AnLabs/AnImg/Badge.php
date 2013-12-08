@@ -45,12 +45,16 @@ final class Badge
         $leftSideWidth = $margin["left"] * 4 + $width["left"];
         $backgroundImage->roundedRectangle(0, 0, ($leftSideWidth + 5 * $marginFactor) * $scaleFactor, ($badgeHeight - 1) * $scaleFactor, Lib\Color::grey(), $roundRadius * $scaleFactor);
         $backgroundImage->roundedRectangle($leftSideWidth * $scaleFactor, 0, ($badgeWidth - 1) * $scaleFactor, ($badgeHeight - 1) * $scaleFactor, $color, $roundRadius * $scaleFactor);
+
         $badgeImage = $imgT->resizeTransformAR($backgroundImage, $badgeWidth);
         $backgroundImage->destroy();
 
         $text_color = $badgeImage->allocateColor(255, 255, 255);
         
         $textY = $margin["top"] + $font->height($text);
+        if ($fontSize < 10) {
+            $textY -= 1;
+        }
         $this->createShadowText($badgeImage, $leftText, 2 * $margin["left"], $textY, $text_color, $font, $marginFactor / 2);
 
         $leftDistance = $margin["left"] * 3 + $margin["right"] * 3 + $width["left"];
@@ -62,7 +66,7 @@ final class Badge
     private function createShadowText(Lib\TCGDImage $image, $text, $x, $y, Lib\ImageColor $color, Lib\ImageFont $font, $offset = 1)
     {
         $oldRgb = $color->rgbColor();
-        $shadeColor = $image->allocateColor($oldRgb[0] * 0.3, $oldRgb[1] * 0.3, $oldRgb[2] * 0.3);
+        $shadeColor = $image->allocateColor($oldRgb[0] * 0.2, $oldRgb[1] * 0.2, $oldRgb[2] * 0.2);
         $textTransformer = new TextTransformer;
         $offset = max([1, $offset]);
 
